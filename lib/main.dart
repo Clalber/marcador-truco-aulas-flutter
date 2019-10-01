@@ -10,7 +10,7 @@ Screen.keepOn(true);
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Marcador de Truco',
-      theme: ThemeData(primarySwatch: Colors.deepOrange),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: HomePage(),
     ),
   );

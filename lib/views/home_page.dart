@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:marcador_truco/models/player.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
-  
 }
 
 class _HomePageState extends State<HomePage> {
@@ -81,18 +79,25 @@ class _HomePageState extends State<HomePage> {
 
   Widget _showPlayerBoard(Player player) {
     return Expanded(
-      flex: 1,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          _showPlayerName(player),
-          _showPlayerScore(player.score),
-          _showPlayerVictories(player.victories),
-          _showScoreButtons(player),
-        ],
-      ),
-    );
+        flex: 1,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: _showPlayerName(player),
+              ),
+              _showPlayerScore(player.score),
+              _showPlayerVictories(player.victories),
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: _showScoreButtons(player),
+              ),
+            ],
+          ),
+        ));
   }
 
   Widget _showPlayerName(Player player) {
@@ -119,9 +124,12 @@ class _HomePageState extends State<HomePage> {
                       child: Text('Salvar'),
                       onPressed: () {
                         setState(() {
-                          player.name = _renameController.text;
+                          if (_renameController.text == "") {
+                          } else {
+                            player.name = _renameController.text;
+                            _renameController.clear();
+                          }
                         });
-                        _renameController.clear();
                         Navigator.of(context).pop();
                       },
                     ),
